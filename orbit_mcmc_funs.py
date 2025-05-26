@@ -4,6 +4,12 @@ from skyfield.data import mpc
 from skyfield.api import load, N, W, wgs84
 from skyfield.constants import GM_SUN_Pitjeva_2005_km3_s2 as GM_SUN
 
+# Load Sun Earth ephemeris
+eph = load('MPC/de421.bsp')
+sun, earth = eph['sun'], eph['earth']
+# Site
+obs_site = earth + wgs84.latlon(35.904613 * N, 79.046761 * W)
+
 def n(c):
     return ord(c) - (48 if c.isdigit() else 55)
 
